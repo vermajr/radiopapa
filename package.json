@@ -1,0 +1,22 @@
+{
+  "name": "radiopapa",
+  "version": "0.1.0",
+  "private": true, "homepage":"https://vermajr.github.io/radiopapa/",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "firebase": "^5.5.0",
+    "gh-pages": "^2.0.0",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",    "predeploy":"npm run build",    "deploy":"gh-pages -d build",
+    "eject": "react-scripts eject"
+  }
+}
