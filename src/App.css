@@ -1,6 +1,6 @@
 @font-face {
   font-family: typoG;
-  src: url("/typo.otf");
+  src: url("typo.otf");
 }
 .App {
   padding-bottom: 6px;
