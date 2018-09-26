@@ -1,6 +1,6 @@
 @font-face {
   font-family: typoG;
-  src: url("/typo.otf");
+  src: url("/radiopapa/typo.otf");
 }
 .App {
   padding-bottom: 6px;
@@ -18,8 +18,19 @@
 }
 #afterLogo {
   text-align: center;
-  font-size: 36px;
+  font-size: 42px;
   font-family: "typoG";
+  color: #333;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#mobileLogo {
+  text-align: center;
+  font-size: 30px;
+  font-family: "typoG";
+  color: #333;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

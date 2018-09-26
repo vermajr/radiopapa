@@ -9,6 +9,10 @@ import "jquery-ui/ui/widgets/draggable";
 import "jquery-ui/ui/widgets/droppable";
 import "jquery-ui/ui/effects/effect-slide";
 import "jquery-ui/ui/effects/effect-shake";
+import facebook_icon from "./facebook.png";
+import linkedin_icon from "./linkedin.png";
+import github_icon from "./github.png";
+import stackoverflow_icon from "./stackoverflow.png";
 
 class AppR extends Component {
   state = {
@@ -39,6 +43,15 @@ class AppR extends Component {
     ]
   };
   componentDidMount() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    var onMobilePhone = 0;
+    if (/windows phone/i.test(userAgent)) onMobilePhone = 1;
+    if (/android/i.test(userAgent)) onMobilePhone = 1;
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream)
+      onMobilePhone = 1;
+    if (onMobilePhone == 1)
+      document.getElementById("root").innerHTML =
+        "<div style='width:96%;'><br /><br /><div id='mobileLogo'>radiopapa</div><br><center><b>Not available on mobile phones for now :(<br />Would launch an App soon!<br />Till then, fire up your custom radio station on your Desktop ;)</b></center></div>";
     $(window).on("resize", function() {
       var win = $(this); //this = window
       if (win.width() < 750) {
@@ -133,7 +146,7 @@ class AppR extends Component {
   handleSearch = e => {
     if (e.target.value.length > 0) {
       fetch(
-        "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" +
+        "https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" +
           e.target.value +
           "&api_key=0017041e90dd503219cd302cac55510a&limit=10&format=json"
       )
@@ -188,6 +201,9 @@ class AppR extends Component {
       document
         .getElementById("header")
         .parentElement.removeChild(document.getElementById("header"));
+      document
+        .getElementById("footMessage")
+        .parentElement.removeChild(document.getElementById("footMessage"));
       //document.getElementById("scol1").className = "col-md-2";
       //document.getElementById("scol2").className = "";
       //document.getElementById("logo").setAttribute("src", "/radiopapa.png");
@@ -271,6 +287,31 @@ class AppR extends Component {
             </div>
           </div>
         </div>
+        <span id="footMessage" style={{ float: "right" }}>
+          <span style={{ fontFamily: "courier", fontSize: 14, marginTop: 3 }}>
+            Created by: VermaJr
+          </span>
+          &nbsp;&nbsp;
+          <a
+            href="https://stackoverflow.com/users/5073281/verma-jr"
+            target="_blank"
+          >
+            <img src={stackoverflow_icon} />
+          </a>
+          &nbsp;
+          <a href="https://www.linkedin.com/in/vermajr/" target="_blank">
+            <img src={linkedin_icon} />
+          </a>
+          &nbsp;
+          <a href="https://github.com/vermajr" target="_blank">
+            <img src={github_icon} />
+          </a>
+          &nbsp;
+          <a href="https://www.facebook.com/utkarsh.verma" target="_blank">
+            <img src={facebook_icon} />
+          </a>
+          &nbsp;&nbsp;&nbsp;
+        </span>
       </React.Fragment>
     );
   }

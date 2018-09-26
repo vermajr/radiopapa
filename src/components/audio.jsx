@@ -58,6 +58,10 @@ class Audio extends Component {
       "3"
     ]
   };
+  constructor(props) {
+    super(props);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
   encode = input => {
     input = input + "";
     var firstInput = input.split("_")[0];
@@ -84,14 +88,14 @@ class Audio extends Component {
     //  audio.currentTime == audio.duration ||
     //  (audio.currentTime == 0 && audio.duration == NaN)
     //) {
+    var audio = document.getElementById("audio");
     if (value.length > 0) {
       if (this.props.audioData)
         document.getElementById("processing").style.display = "";
-      fetch("http://www.mp3jack.in/api.php?q=" + value)
+      fetch("https://radiopapa-api.000webhostapp.com/?q=" + value)
         .then(res => res.json())
         .then(result => {
           var results = [...result.matches.track];
-          var audio = document.getElementById("audio");
           if (results.length != 0) {
             console.log("handleSearch() Results found: " + value);
             var currentSourceId = results[0].sourceId;
@@ -105,6 +109,10 @@ class Audio extends Component {
             audio.setAttribute("src", "");
             this.props.setCurrentKey({ currentKey });
           }
+        })
+        .catch(error => {
+          console.log("fetch() error caught");
+          this.handleSearch(this.props.keywords[this.props.currentKey]);
         });
     }
     //}
@@ -221,6 +229,13 @@ class Audio extends Component {
   }
   render() {
     console.log("Render() FL");
+    const ing =
+      this.props.ingredients.artists.length != 0 ||
+      this.props.ingredients.tags.length != 0
+        ? this.printIngredients().map(
+            ing => '&nbsp;<span class="ingredient">' + ing + "</span>"
+          )
+        : "";
     return (
       <React.Fragment>
         <audio
@@ -298,8 +313,31 @@ class Audio extends Component {
                 <img src={skip_icon} height="14px" />
               </a>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                id="volumeBtn"
+                href="#"
+                onClick={() => this.volumeControl({ action: "mute" })}
+              >
+                <img src={volume_icon} height="20px" />
+              </a>
+              <a
+                id="muteBtn"
+                href="#"
+                onClick={() => this.volumeControl({ action: "unmute" })}
+                style={{ display: "none" }}
+              >
+                <img src={mute_icon} height="21px" />
+              </a>
             </div>
           </div>
+        ) : (
+          ""
+        )}
+        {this.props.audioData && ing ? (
+          <div
+            style={{ marginTop: 12 }}
+            dangerouslySetInnerHTML={{ __html: ing }}
+          />
         ) : (
           ""
         )}

@@ -50,7 +50,7 @@ class Populate extends Component {
     var that = this;
     if (that.props.ingredients.artists.length != 0) {
       fetch(
-        "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=" +
+        "https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=" +
           that.props.ingredients.artists[data.index].mbid +
           "&api_key=0017041e90dd503219cd302cac55510a&limit=100&format=json"
       )
@@ -72,7 +72,7 @@ class Populate extends Component {
     var that = this;
     if (that.props.ingredients.tags.length != 0) {
       fetch(
-        "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" +
+        "https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" +
           that.props.ingredients.tags[data.index].title +
           "&api_key=0017041e90dd503219cd302cac55510a&limit=100&format=json"
       )
@@ -134,17 +134,10 @@ class Populate extends Component {
         : "";
     }
 
-    const ing =
-      this.props.ingredients.artists.length != 0 ||
-      this.props.ingredients.tags.length != 0
-        ? this.printIngredients().map(
-            ing => '&nbsp;<span class="ingredient">' + ing + "</span>"
-          )
-        : "";
-
     return (
       <React.Fragment>
         <Audio
+          ingredients={this.props.ingredients}
           keywords={this.state.keywords}
           currentKey={this.state.currentKey}
           setCurrentKey={this.setCurrentKey}
@@ -152,14 +145,6 @@ class Populate extends Component {
           audioData={this.state.results[0]}
           setAudio={this.setAudio}
         />
-        {ing ? (
-          <div
-            style={{ marginTop: 12 }}
-            dangerouslySetInnerHTML={{ __html: ing }}
-          />
-        ) : (
-          ""
-        )}
       </React.Fragment>
     );
   }
