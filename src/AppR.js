@@ -299,12 +299,12 @@ class AppR extends Component {
             <img src={stackoverflow_icon} />
           </a>
           &nbsp;
-          <a href="https://www.linkedin.com/in/vermajr/" target="_blank">
-            <img src={linkedin_icon} />
-          </a>
-          &nbsp;
           <a href="https://github.com/vermajr" target="_blank">
             <img src={github_icon} />
+          </a>
+          &nbsp;
+          <a href="https://www.linkedin.com/in/vermajr/" target="_blank">
+            <img src={linkedin_icon} />
           </a>
           &nbsp;
           <a href="https://www.facebook.com/utkarsh.verma" target="_blank">
