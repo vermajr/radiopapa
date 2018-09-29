@@ -51,7 +51,7 @@ class AppR extends Component {
       onMobilePhone = 1;
     if (onMobilePhone == 1)
       document.getElementById("root").innerHTML =
-        "<div style='width:96%;'><br /><br /><div id='mobileLogo'>radiopapa</div><br><center><b>Not available on mobile phones for now :(<br />Would launch an App soon!<br />Till then, fire up your custom radio station on your Desktop ;)</b></center></div>";
+        "<div class='container'><br /><br /><div id='mobileLogo'>radiopapa</div><br><center><b>Not available on mobile phones for now :(<br />Would launch an App soon!<br />Till then, fire up your custom radio station on your Desktop ;)</b></center></div>";
     $(window).on("resize", function() {
       var win = $(this); //this = window
       if (win.width() < 750) {

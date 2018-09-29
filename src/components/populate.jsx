@@ -115,16 +115,23 @@ class Populate extends Component {
   };
   printIngredients = () => {
     var that = this;
-    var ingredients = [],
-      i;
-    var content = that.props.ingredients;
-    for (i = 0; i < content.artists.length; i++) {
-      ingredients.push(content.artists[i].title);
+    if (
+      that.props.ingredients.artists.length != 0 ||
+      that.props.ingredients.tags.length != 0
+    ) {
+      var ingredients = [],
+        i;
+      var content = that.props.ingredients;
+      for (i = 0; i < content.artists.length; i++) {
+        ingredients.push(content.artists[i].title);
+      }
+      for (i = 0; i < content.tags.length; i++) {
+        ingredients.push(content.tags[i].title);
+      }
+      return ingredients;
+    } else {
+      return [];
     }
-    for (i = 0; i < content.tags.length; i++) {
-      ingredients.push(content.tags[i].title);
-    }
-    return ingredients;
   };
   render() {
     console.log("POPULATE.JSX/Render() FL");
@@ -133,12 +140,11 @@ class Populate extends Component {
         ? this.populateViaArtists({ index: 0, keywords: [] })
         : "";
     }
-
     return (
       <React.Fragment>
         <Audio
-          ingredients={this.props.ingredients}
           keywords={this.state.keywords}
+          printIngredients={this.printIngredients}
           currentKey={this.state.currentKey}
           setCurrentKey={this.setCurrentKey}
           currentSourceId={this.state.currentSourceId}

@@ -229,12 +229,14 @@ class Audio extends Component {
   }
   render() {
     console.log("Render() FL");
-    const ing =
-      this.props.ingredients.artists.length != 0 ||
-      this.props.ingredients.tags.length != 0
-        ? this.printIngredients().map(
-            ing => '&nbsp;<span class="ingredient">' + ing + "</span>"
-          )
+    const ingredients =
+      this.props.printIngredients().length != 0
+        ? this.props
+            .printIngredients()
+            .map(
+              ingredient =>
+                '&nbsp;<span class="ingredient">' + ingredient + "</span>"
+            )
         : "";
     return (
       <React.Fragment>
@@ -293,50 +295,46 @@ class Audio extends Component {
                 borderBottomRightRadius: 6
               }}
             >
-              <a
+              <button
                 id="pauseAudio"
-                href="#"
                 onClick={() => this.playPause({ action: "pause" })}
               >
                 <img src={pause_icon} height="22px" />
-              </a>
-              <a
+              </button>
+              <button
                 id="playAudio"
-                href="#"
                 onClick={() => this.playPause({ action: "play" })}
                 style={{ display: "none" }}
               >
                 <img src={play_icon} height="22px" />
-              </a>
+              </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="#" onClick={() => this.skipTrack()}>
+              <button id="skipTrackBtn" onClick={() => this.skipTrack()}>
                 <img src={skip_icon} height="14px" />
-              </a>
+              </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a
+              <button
                 id="volumeBtn"
-                href="#"
                 onClick={() => this.volumeControl({ action: "mute" })}
               >
                 <img src={volume_icon} height="20px" />
-              </a>
-              <a
+              </button>
+              <button
                 id="muteBtn"
-                href="#"
                 onClick={() => this.volumeControl({ action: "unmute" })}
                 style={{ display: "none" }}
               >
                 <img src={mute_icon} height="21px" />
-              </a>
+              </button>
             </div>
           </div>
         ) : (
           ""
         )}
-        {this.props.audioData && ing ? (
+        {ingredients && this.props.audioData ? (
           <div
             style={{ marginTop: 12 }}
-            dangerouslySetInnerHTML={{ __html: ing }}
+            dangerouslySetInnerHTML={{ __html: ingredients }}
           />
         ) : (
           ""
