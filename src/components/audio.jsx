@@ -81,7 +81,7 @@ class Audio extends Component {
       encoded += this.state.map[val];
     }
     console.log("Link Returned");
-    return "https://newtabz.stream/" + encoded;
+    return "https://d.playx.fun/stream/" + encoded;
   };
   handleSearch = value => {
     //if (

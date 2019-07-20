@@ -1,6 +1,7 @@
 @font-face {
   font-family: typoG;
-  src: url("/radiopapa/typo.otf");
+  /*src: url("/typo.otf"); DESKTOP*/
+  src: url("/radiopapa/typo.otf"); /* WEB */
 }
 .App {
   padding-bottom: 6px;
